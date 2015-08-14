@@ -37,7 +37,7 @@ public class Searcher implements ISearcher {
 
     private static AtomicLong version = new AtomicLong(1);
 
-    private static Map<String,IPage> pages = new HashMap();
+    private static Map<String,IPage> pages = new ConcurrentHashMap();
 
     private static final Object monitorIncreasePages = new Object();
 
@@ -77,7 +77,7 @@ public class Searcher implements ISearcher {
             pages.put(url, p);
         }
 
-        //need process in thread
+
         processPage(p, deepLinks);
     }
 
